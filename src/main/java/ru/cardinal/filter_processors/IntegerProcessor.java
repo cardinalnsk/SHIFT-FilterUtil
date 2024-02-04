@@ -34,12 +34,13 @@ public class IntegerProcessor extends DataProcessor<Integer> {
 
   @Override
   public void printStatistics() {
+    boolean isWriteToFile = count != 0;
     String filePath = "." + outputPath + "/" + prefix + fileName;
     String message = """
         %s
         Количество считанных целых чисел: %d
         """;
-    System.out.printf(message, filePath, count);
+    System.out.printf(message, isWriteToFile ? filePath : "", count);
     if (fullStat && count != 0) {
       String stat = """
           Минимальное целое число: %d

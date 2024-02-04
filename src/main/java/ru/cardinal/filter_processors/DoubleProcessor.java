@@ -32,13 +32,14 @@ public class DoubleProcessor extends DataProcessor<Double> {
 
   @Override
   public void printStatistics() {
+    boolean isWriteToFile = count != 0;
     String filePath = "." + outputPath + "/" + prefix + fileName;
     String message = """
         %s
         Количество считанных вещественных чисел: %d
         """;
-    System.out.printf(message, filePath, count);
-    if (fullStat && count != 0) {
+    System.out.printf(message, isWriteToFile ? filePath : "", count);
+    if (fullStat && isWriteToFile) {
       String stat = """
           Минимальное вещественное число: %f
           Максимальное вещественное число: %f

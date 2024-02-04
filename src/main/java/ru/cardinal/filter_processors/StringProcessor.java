@@ -26,12 +26,13 @@ public class StringProcessor extends DataProcessor<String> {
 
   @Override
   public void printStatistics() {
+    boolean isWriteToFile = count != 0;
     String filePath = "." + outputPath + "/" + prefix + fileName;
     String message = """
         %s
         Количество считанных строк: %d
         """;
-    System.out.printf(message, filePath, count);
+    System.out.printf(message, isWriteToFile ? filePath : "", count);
     if (fullStat && count != 0) {
       String stat = """
           Длинна минимальной строки: %s
